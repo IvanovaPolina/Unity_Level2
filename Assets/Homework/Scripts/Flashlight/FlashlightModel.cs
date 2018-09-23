@@ -37,22 +37,22 @@ namespace Homework
 		private void Awake() {
 			_light = GetComponent<Light>();
 			currentCharge = batteryCharge;      // в начале игры делаем полный заряд батареи
-			chargeSpeedInTime = chargeSpeed * Time.deltaTime;
+			chargeSpeedInTime = chargeSpeed * Time.deltaTime; //Не нужно кэшировать Time.deltaTime в Awake, т.к. в следующем кадре он уже изменится
 		}
 
 		/// <summary>
 		/// Включает фонарик и разряжает батарейку
 		/// </summary>
 		public void On() {
-			_light.enabled = true;
-			StartCoroutine(DecrementCharge());
+			_light.enabled = true;			
+			StartCoroutine(DecrementCharge());			
 		}
 
 		/// <summary>
 		/// Выключает фонарик и заряжает батарейку
 		/// </summary>
 		public void Off() {
-			_light.enabled = false;
+			_light.enabled = false;			
 			StartCoroutine(IncrementCharge());
 		}
 
