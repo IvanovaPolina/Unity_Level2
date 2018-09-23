@@ -10,6 +10,10 @@ namespace Homework
 		private void Update() {
 			if (Input.GetButtonDown("SwitchFlashlight"))
 				Main.Instance.FlashlightController.Switch();
+			else if (Input.GetKeyDown(KeyCode.E))
+				Main.Instance.SelectionController.Interact();
+			//else if (Input.GetButtonDown("Inventory"))
+			//	Main.Instance.SelectionController.Switch();
 		}
 	}
 }
