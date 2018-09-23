@@ -27,7 +27,10 @@ namespace Homework
 		public float CurrentCharge { get { return currentCharge; } }
 		private float currentCharge;
 		public float chargeSpeed = 1f;     // скорость зарядки/разрядки батареи
-		private float chargeSpeedInTime;	// скорость зарядки/разрядки батареи с учетом времени
+		/// <summary>
+		/// Скорость зарядки/разрядки батареи с учетом времени
+		/// </summary>
+		public float ChargeSpeedInTime { get { return chargeSpeed * Time.deltaTime; } }
 		/// <summary>
 		/// Сколько процентов заряда должно быть, чтобы фонарик можно было включить
 		/// </summary>
@@ -37,7 +40,6 @@ namespace Homework
 		private void Awake() {
 			_light = GetComponent<Light>();
 			currentCharge = batteryCharge;      // в начале игры делаем полный заряд батареи
-			chargeSpeedInTime = chargeSpeed * Time.deltaTime;
 		}
 
 		/// <summary>
@@ -57,19 +59,11 @@ namespace Homework
 		}
 
 		/// <summary>
-		/// Переключает текущее состояние фонарика на противоположное
-		/// </summary>
-		public void Switch() {
-			if (IsOn) Off();
-			else On();
-		}
-
-		/// <summary>
 		/// Заряжает батарейку
 		/// </summary>
 		IEnumerator IncrementCharge() {
 			while(!IsOn && currentCharge < batteryCharge) {
-				currentCharge += chargeSpeedInTime;
+				currentCharge += ChargeSpeedInTime;
 				yield return null;
 			}
 			if (currentCharge >= batteryCharge)
@@ -81,7 +75,7 @@ namespace Homework
 		/// </summary>
 		IEnumerator DecrementCharge() {
 			while (IsOn && currentCharge > 0) {
-				currentCharge -= chargeSpeedInTime;
+				currentCharge -= ChargeSpeedInTime;
 				yield return null;
 			}
 			if (currentCharge <= 0) currentCharge = 0;
