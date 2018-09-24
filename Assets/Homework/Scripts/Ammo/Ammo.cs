@@ -7,7 +7,9 @@ namespace Homework
 	/// </summary>
 	public abstract class Ammo : BaseSceneObject
 	{
-		// Количество урона
+		/// <summary>
+		/// Количество урона от боеприпаса
+		/// </summary>
 		[SerializeField]
 		protected float damage = 10f;
 

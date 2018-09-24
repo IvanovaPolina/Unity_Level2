@@ -7,9 +7,8 @@ namespace Homework
 	/// </summary>
 	public sealed class SingleBarreledFirearms : Weapons
 	{
-		// Позиция, из которой будут вылетать пули
 		[SerializeField]
-		private Transform _firepoint;
+		private Transform _firepoint;	// Позиция, из которой будут вылетать пули
 
 		public override void Fire() {
 			if (!TryShoot()) return;

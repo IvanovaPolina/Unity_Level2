@@ -232,7 +232,7 @@ TrailRenderer:
     alignment: 0
     textureMode: 0
     generateLightingData: 0
-  m_MinVertexDistance: 0.1
+  m_MinVertexDistance: Infinity
   m_Autodestruct: 0
   m_Emitting: 1
 --- !u!114 &114018285122006124

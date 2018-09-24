@@ -8,7 +8,7 @@ namespace Homework
 	public sealed class MultiBarreledFirearms : Weapons
 	{
 		[SerializeField]
-		private Transform[] firepoints;
+		private Transform[] firepoints;		// Позиции, из которых будут вылетать пули
 		private int currentFirepoint;
 
 		public override void Fire() {

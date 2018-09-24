@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace Homework
+﻿namespace Homework
 {
 	public sealed class WeaponController : BaseController
 	{
