@@ -11,6 +11,7 @@ namespace Homework
 		public InputController InputController { get; private set; }
 		public FlashlightController FlashlightController { get; private set; }
 		public SelectionController SelectionController { get; private set; }
+		public WeaponController WeaponController { get; private set; }
 
 		private void Awake() {
 			// проверяем создание ЕДИНСТВЕННОГО экземпляра данного класса
@@ -22,6 +23,7 @@ namespace Homework
 			InputController = gameObject.AddComponent<InputController>();
 			FlashlightController = gameObject.AddComponent<FlashlightController>();
 			SelectionController = gameObject.AddComponent<SelectionController>();
+			WeaponController = gameObject.AddComponent<WeaponController>();
 		}
 	}
 }

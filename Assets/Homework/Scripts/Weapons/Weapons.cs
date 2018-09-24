@@ -7,23 +7,36 @@ namespace Homework
 	/// </summary>
 	public abstract class Weapons : BaseSceneObject
 	{
-		#region Serialize Variable
-		// Позиция, из которой будут вылетать снаряды
-		[SerializeField] protected Transform _firepoint;
+		[SerializeField]
+		protected Ammo _ammoPrefab;
+
 		// Сила выстрела
-		[SerializeField] protected float _force = 500f;
+		[SerializeField]
+		protected float _force = 50f;
+		[SerializeField]
+		protected float reloadTime;
+		private float reloadTimer;
 		// Время задержки между выстрелами
-		[SerializeField] protected float _rechargeTime = 0.2f;
-		#endregion
+		[SerializeField]
+		protected float timeout = 0.5f;
+		protected float lastShotTime;
 
-		#region Protected Variable
-		// Флаг, разрешающий выстрел
-		protected bool _canFire = true;
-		#endregion
-
-		#region Abstract Function
-		// Функция для вызова выстрела, обязательна во всех дочерних классах
+		/// <summary>
+		/// Функция для вызова выстрела, обязательна во всех классах наследниках
+		/// </summary>
 		public abstract void Fire();
-		#endregion
+
+		/// <summary>
+		/// Проверяет, можно ли стрелять
+		/// </summary>
+		/// <returns>true - если стрелять можно, false - если нет</returns>
+		protected bool TryShoot() {
+			if (Time.time - lastShotTime < timeout) return false;
+			lastShotTime = Time.time;
+			return true;
+		}
+
+		// Функция перезарядки
+		public abstract void Reload();
 	}
 }

@@ -10,10 +10,14 @@ namespace Homework
 		private void Update() {
 			if (Input.GetButtonDown("SwitchFlashlight"))
 				Main.Instance.FlashlightController.Switch();
-			else if (Input.GetKeyDown(KeyCode.E))
+			if (Input.GetKeyDown(KeyCode.E))
 				Main.Instance.SelectionController.Interact();
 			//else if (Input.GetButtonDown("Inventory"))
 			//	Main.Instance.SelectionController.Switch();
+			if (Input.GetButtonDown("ChangeWeapon"))
+				Main.Instance.WeaponController.ChangeWeapon();
+			if (Input.GetButton("Fire1"))
+				Main.Instance.WeaponController.Fire();
 		}
 	}
 }

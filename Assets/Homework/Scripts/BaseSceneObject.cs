@@ -153,10 +153,7 @@ namespace Homework
 			get { return _isVisible; }
 			set {
 				_isVisible = value;
-				if (_instanceObject.GetComponent<MeshRenderer>())
-					_instanceObject.GetComponent<MeshRenderer>().enabled = _isVisible;
-				if (_instanceObject.GetComponent<SkinnedMeshRenderer>())
-					_instanceObject.GetComponent<SkinnedMeshRenderer>().enabled = _isVisible;
+				SetVisible(Transform, _isVisible);
 			}
 		}
 		/// <summary>
@@ -195,6 +192,19 @@ namespace Homework
 			if (obj.childCount == 0) return;	// если имеются дочерние объекты
 			foreach (Transform child in obj)
 				SetColor(child, color);	// рекурсивно вызываем для них эту функцию
+		}
+		/// <summary>
+		/// Показывает/скрывает себя и всех вложенных объектов независимо от уровня вложенности
+		/// </summary>
+		private void SetVisible(Transform obj, bool isVisible) {
+			MeshRenderer meshRenderer = obj.GetComponent<MeshRenderer>();
+			if (meshRenderer) meshRenderer.enabled = isVisible;
+			SkinnedMeshRenderer skinRenderer = obj.GetComponent<SkinnedMeshRenderer>();
+			if (skinRenderer) skinRenderer.enabled = isVisible;
+			if (obj.childCount > 0) {
+				foreach (Transform child in obj) // Проходит по всем вложенным объектам
+					SetVisible(child, isVisible); // Рекурсивный вызов функции
+			}
 		}
 		#endregion
 	}
