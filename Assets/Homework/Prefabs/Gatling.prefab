@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4820889786030904}
-  - component: {fileID: 114925312165446220}
+  - component: {fileID: 114890695799361460}
   m_Layer: 0
   m_Name: Gatling
   m_TagString: Untagged
@@ -288,7 +288,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1417333736438690}
   m_Mesh: {fileID: 4300002, guid: 26f4603e86e78c841aca62fab44b2672, type: 3}
---- !u!114 &114925312165446220
+--- !u!114 &114890695799361460
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -296,7 +296,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1088644841366238}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 120255a91b2272342a2d4f52bdc627ca, type: 3}
+  m_Script: {fileID: 11500000, guid: 64d4687cc7b7e3047abbf862e652b7a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _ammoPrefab: {fileID: 114018285122006124, guid: 12baaf34dd37c654ba8335d34cd80ae4,
@@ -304,5 +304,4 @@ MonoBehaviour:
   _force: 100
   reloadTime: 0
   timeout: 0.1
-  firepoints:
-  - {fileID: 4485257708584254}
+  _firepoint: {fileID: 4485257708584254}

@@ -33,7 +33,7 @@ namespace Homework
 			if (Physics.Linecast(Position, finalPos, out hit, layerMask)) {
 				isHitted = true;
 				Position = hit.point;
-				// Наносим урон и уничтожаем объект
+				// Наносим урон и уничтожаем пулю
 				ISetDamage obj = hit.collider.GetComponent<ISetDamage>();
 				if (obj != null) obj.ApplyDamage(damage);
 				Destroy(InstanceObject, 0.3f);
