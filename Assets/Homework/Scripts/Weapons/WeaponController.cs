@@ -1,4 +1,6 @@
-﻿namespace Homework
+﻿using UnityEngine;
+
+namespace Homework
 {
 	public sealed class WeaponController : BaseController
 	{
@@ -19,6 +21,17 @@
 			currentWeapon++;
 			if (currentWeapon >= weapons.Length)
 				currentWeapon = 0;
+			weapons[currentWeapon].IsVisible = true;
+		}
+
+		/// <summary>
+		/// Функция смены оружия на следующее (для смены по колёсику мыши)
+		/// </summary>
+		public void ChangeWeapon(float nextValue) {
+			weapons[currentWeapon].IsVisible = false;
+			currentWeapon += (int)nextValue;
+			if (currentWeapon >= weapons.Length) currentWeapon = 0;
+			if (currentWeapon < 0) currentWeapon = weapons.Length - 1;
 			weapons[currentWeapon].IsVisible = true;
 		}
 

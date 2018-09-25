@@ -16,6 +16,8 @@ namespace Homework
 			//	Main.Instance.SelectionController.Switch();
 			if (Input.GetButtonDown("ChangeWeapon"))
 				Main.Instance.WeaponController.ChangeWeapon();
+			if (Input.mouseScrollDelta.y != 0)
+				Main.Instance.WeaponController.ChangeWeapon(Input.mouseScrollDelta.y);
 			if (Input.GetButton("Fire1"))
 				Main.Instance.WeaponController.Fire();
 		}
