@@ -247,8 +247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 5
-  maxDamage: 0.5
-  radius: 0.5
+  radius: 0.25
   lifetime: 5
   layerMask:
     serializedVersion: 2

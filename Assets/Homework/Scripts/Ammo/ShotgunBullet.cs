@@ -13,7 +13,6 @@ namespace Homework
 
 		private bool isHitted = false;
 		private float speed;    // скорость пули
-		private Vector3 finalPos = new Vector3(0, 0, 1);
 		private Vector2 endPoint;
 
 		public override void Initialize(float force) {
@@ -27,8 +26,9 @@ namespace Homework
 
 		private void FixedUpdate() {
 			if (isHitted) return;
-			Vector3 endDirPoint = new Vector3(endPoint.x, endPoint.y, finalPos.z); // определяем конечную точку для вектора направления
-			finalPos = Position + endDirPoint * speed * Time.fixedDeltaTime;
+			Vector3 finalPos = Position + Transform.forward * speed * Time.fixedDeltaTime;
+			finalPos.x += endPoint.x * speed * Time.fixedDeltaTime;
+			finalPos.y += endPoint.y * speed * Time.fixedDeltaTime;
 			RaycastHit hit;
 			if (Physics.Linecast(Position, finalPos, out hit, layerMask)) {
 				isHitted = true;
