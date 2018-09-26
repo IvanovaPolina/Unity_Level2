@@ -15,7 +15,6 @@ namespace Homework
 			if (!TryShoot()) return;
 			Ammo ammo = Instantiate(_ammoPrefab, firepoints[currentFirepoint].position, firepoints[currentFirepoint].rotation);
 			ammo.Initialize(_force);
-
 			currentFirepoint++;
 			if (currentFirepoint >= firepoints.Length)
 				currentFirepoint = 0;

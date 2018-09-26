@@ -33,12 +33,22 @@ namespace Homework
 			if (Physics.Linecast(Position, finalPos, out hit, layerMask)) {
 				isHitted = true;
 				Position = hit.point;
-				// Наносим урон и уничтожаем пулю
-				ISetDamage obj = hit.collider.GetComponent<ISetDamage>();
-				if (obj != null) obj.ApplyDamage(damage);
+				// Наносим урон, меняем дамаг и уничтожаем пулю
+				SetDamage(hit);
 				Destroy(InstanceObject, 0.3f);
-			} 
+			}
 			else Position = finalPos;
+		}
+
+		private void SetDamage(RaycastHit hit) {
+			ISetDamage objSet = hit.collider.GetComponent<ISetDamage>();
+			if (objSet == null) return;    // если объект не реализует ISetDamage, значит не может получать урон
+			IChangeDamage objChange = hit.collider.GetComponent<IChangeDamage>();
+			if (objChange != null) {	// если объект реализует IChangeDamage - наносим ему увеличенный урон
+				objChange.ApplyMultDamage(damage);
+				return;
+			}
+			objSet.ApplyDamage(damage);
 		}
 	}
 }
