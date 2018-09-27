@@ -20,6 +20,10 @@ namespace Homework
 				Main.Instance.WeaponController.ChangeWeapon(Input.mouseScrollDelta.y);
 			if (Input.GetButton("Fire1"))
 				Main.Instance.WeaponController.Fire();
+			if (Input.GetButtonDown("FollowPlayer"))
+				Main.Instance.TeammateController.Follow();
+			if (Input.GetButtonDown("TeammateCommand"))
+				Main.Instance.TeammateController.MoveCommand();
 		}
 	}
 }

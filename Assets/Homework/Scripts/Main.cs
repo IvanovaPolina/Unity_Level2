@@ -12,6 +12,7 @@ namespace Homework
 		public FlashlightController FlashlightController { get; private set; }
 		public SelectionController SelectionController { get; private set; }
 		public WeaponController WeaponController { get; private set; }
+		public TeammateController TeammateController { get; private set; }
 
 		private void Awake() {
 			// проверяем создание ЕДИНСТВЕННОГО экземпляра данного класса
@@ -24,6 +25,7 @@ namespace Homework
 			FlashlightController = gameObject.AddComponent<FlashlightController>();
 			SelectionController = gameObject.AddComponent<SelectionController>();
 			WeaponController = gameObject.AddComponent<WeaponController>();
+			TeammateController = gameObject.AddComponent<TeammateController>();
 		}
 	}
 }
