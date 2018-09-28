@@ -260,7 +260,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4277687981017124}
   - component: {fileID: 20097583954467014}
-  - component: {fileID: 81591149992084300}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -428,6 +427,22 @@ GameObject:
   - component: {fileID: 4879921249721616}
   m_Layer: 0
   m_Name: EthanHead
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1392997846093766
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4731698401874342}
+  - component: {fileID: 114570377868270714}
+  m_Layer: 0
+  m_Name: HitPointsView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2082,6 +2097,19 @@ Transform:
   m_Father: {fileID: 4542392045125078}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4731698401874342
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1392997846093766}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4913162722221662}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4735371012247966
 Transform:
   m_ObjectHideFlags: 1
@@ -2343,8 +2371,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1777609324038458}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.22, y: 0.9, z: 84.1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -9.1, y: 0.45, z: -13.6}
   m_LocalScale: {x: 1.4, y: 1.4, z: 1.4}
   m_Children:
   - {fileID: 4575177162394970}
@@ -2352,6 +2380,7 @@ Transform:
   - {fileID: 4254662726082288}
   - {fileID: 4277687981017124}
   - {fileID: 4016615435049270}
+  - {fileID: 4731698401874342}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2614,13 +2643,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!81 &81591149992084300
-AudioListener:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1265057933115176}
-  m_Enabled: 1
 --- !u!95 &95577195470925178
 Animator:
   serializedVersion: 3
@@ -2639,6 +2661,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114570377868270714
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1392997846093766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cc3d4da1c66c39469015454f92ab297, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitPointEffect: {fileID: 1382924031200094, guid: c910ff349cbbe034793772a1f6ea0486,
+    type: 2}
 --- !u!114 &114708473438463946
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2888,5 +2923,5 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 1.6
   m_BaseOffset: 0
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 5
   m_ObstacleAvoidanceType: 4

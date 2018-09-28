@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.AI;
 using UnityStandardAssets.Characters.ThirdPerson;
 
@@ -8,8 +9,12 @@ namespace Homework
 	{
 		private NavMeshAgent agent;
 		private ThirdPersonCharacter character;
-		private Vector3 currentPos;
 		private bool followPlayer;
+		private Queue<Vector3> hitPoints = new Queue<Vector3>();
+		/// <summary>
+		/// Возвращает количество точек назначения в пути тиммэйта
+		/// </summary>
+		public int HitPointsCount { get { return hitPoints.Count; } }
 
 		private void Start() {
 			agent = GetComponentInChildren<NavMeshAgent>();
@@ -17,8 +22,6 @@ namespace Homework
 
 			agent.updateRotation = false;
 			agent.updatePosition = true;
-
-			currentPos = Position;
 		}
 
 		private void Update() {
@@ -30,17 +33,35 @@ namespace Homework
 			else
 				character.Move(Vector3.zero, false, false);
 		}
-		
+
+		/// <summary>
+		/// Добавляет новую точку назначения в путь тиммэйта
+		/// </summary>
+		public void EnqueueNewPoint(Vector3 point) {
+			hitPoints.Enqueue(point);
+		}
+
 		/// <summary>
 		/// Задаёт координаты, в которые должен попасть тиммэйт
 		/// </summary>
 		/// <param name="pos">Координаты</param>
-		public void SetDestination(Vector3 pos) {
+		public void SetDestination() {
+			if (hitPoints.Count == 0) return;
+			Vector3 pos = hitPoints.Dequeue();
 			NavMeshHit hit;
-			if (NavMesh.SamplePosition(pos, out hit, 50f, -1)) {
+			if (NavMesh.SamplePosition(pos, out hit, 50f, agent.areaMask)) {
 				followPlayer = false;
 				agent.SetDestination(hit.position);
 			} else Debug.Log("Wrong position!");
+		}
+
+		/// <summary>
+		/// Определяет, достиг ли тиммэйт заданной позиции
+		/// </summary>
+		public bool IsSetDestination {
+			get {
+				return agent.remainingDistance < agent.stoppingDistance;
+			}
 		}
 
 		/// <summary>
