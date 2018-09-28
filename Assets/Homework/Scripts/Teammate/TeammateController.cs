@@ -39,7 +39,7 @@ namespace Homework
 		public void MoveCommand() {
 			RaycastHit hit;
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-			if(Physics.Raycast(ray, out hit)) {		// в PlayerModel указать переменную "maxDistanceToControlTeammate". здесь третьим параметром передавать эту переменную
+			if(Physics.Raycast(ray, out hit, PlayerModel.LocalPlayer.maxDistanceToControlTeammate)) {
 				TeammateModel teammate = hit.collider.GetComponent<TeammateModel>();
 				if (teammate) SelectTeammate(teammate);     // если луч попал в teammate - выбираем его
 				else if (currentTeammate) { // иначе: если есть выбранный teammate - луч попал в неживой объект

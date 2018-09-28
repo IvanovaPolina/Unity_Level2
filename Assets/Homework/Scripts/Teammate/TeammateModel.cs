@@ -25,7 +25,7 @@ namespace Homework
 		}
 
 		private void Update() {
-			// каждый кадр пересчитывается заново позиция игрока и teammate двигается в соотв. с этим
+			// каждый кадр пересчитывается заново позиция цели и teammate двигается в соотв. с этим
 			if (followPlayer && PlayerModel.LocalPlayer != null)
 				agent.SetDestination(PlayerModel.LocalPlayer.Position);
 			if (agent.remainingDistance > agent.stoppingDistance)

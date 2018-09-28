@@ -7,6 +7,7 @@ namespace Homework
 		public static PlayerModel LocalPlayer { get; private set; }
 		[HideInInspector]
 		public Weapons[] weapons;
+		public float maxDistanceToControlTeammate = 40f;
 
 		protected override void Awake() {
 			if (LocalPlayer) DestroyImmediate(this);
