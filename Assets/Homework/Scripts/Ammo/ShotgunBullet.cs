@@ -26,9 +26,10 @@ namespace Homework
 
 		private void FixedUpdate() {
 			if (isHitted) return;
-			Vector3 finalPos = Position + Transform.forward * speed * Time.fixedDeltaTime;
-			finalPos.x += endPoint.x * speed * Time.fixedDeltaTime;
-			finalPos.y += endPoint.y * speed * Time.fixedDeltaTime;
+			Vector3 finalPos = Position + Transform.forward;	// изначальная траектория - вперед
+			finalPos.x += endPoint.x;	// отклоняем траекторию по осям X и Y
+			finalPos.y += endPoint.y;
+			finalPos *= speed * Time.fixedDeltaTime;	// умножаем на скорость и учитываем физику
 			RaycastHit hit;
 			if (Physics.Linecast(Position, finalPos, out hit, layerMask)) {
 				isHitted = true;
