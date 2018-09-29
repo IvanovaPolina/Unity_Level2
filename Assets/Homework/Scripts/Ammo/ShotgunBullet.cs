@@ -5,6 +5,10 @@ namespace Homework
 	public sealed class ShotgunBullet : Ammo
 	{
 		[SerializeField]
+		private string poolID;
+		[SerializeField]
+		private int bulletsCount = 50;
+		[SerializeField]
 		private float radius = 0.5f;    // максимальное отклонение траектории полёта пули
 		[SerializeField]
 		private float lifetime = 5f;        // время существования пули
@@ -15,13 +19,18 @@ namespace Homework
 		private float speed;    // скорость пули
 		private Vector2 endPoint;
 
-		public override void Initialize(float force) {
-			speed = force;
-		}
+		public override string PoolID { get { return poolID; } }
+		public override int ObjectsCount { get { return bulletsCount; } }
 
-		private void Start() {
-			Destroy(InstanceObject, lifetime);
+		public override void Initialize(Transform firepoint, float force) {
+			Position = firepoint.position;
+			Rotation = firepoint.rotation;
+			CancelInvoke();
+			isHitted = false;   // для переиспользования пули
+			speed = force;
+			Invoke("Disable", lifetime);
 			endPoint = Random.insideUnitCircle * radius;    // берем рандомную точку в пределах круга
+			gameObject.SetActive(true);
 		}
 
 		private void FixedUpdate() {
@@ -37,7 +46,7 @@ namespace Homework
 				// Наносим урон и уничтожаем пулю
 				ISetDamage obj = hit.collider.GetComponent<ISetDamage>();
 				if (obj != null) obj.ApplyDamage(damage);
-				Destroy(InstanceObject);
+				Disable();
 			} else Position = finalPos;
 		}
 	}

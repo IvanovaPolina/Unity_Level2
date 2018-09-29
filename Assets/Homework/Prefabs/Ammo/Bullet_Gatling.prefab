@@ -247,6 +247,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 15
+  poolID: Gatling
+  bulletsCount: 50
   lifetime: 5
   layerMask:
     serializedVersion: 2

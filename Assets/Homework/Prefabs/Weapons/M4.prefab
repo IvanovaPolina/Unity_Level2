@@ -299,8 +299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64d4687cc7b7e3047abbf862e652b7a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ammoPrefab: {fileID: 114129030631800870, guid: 6825c46390a3939428d6892fbde20ea4,
-    type: 2}
+  _ammoID: M4
   _force: 110
   reloadTime: 0
   timeout: 0.2

@@ -299,8 +299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e55ca0bf730b321429d817857b69df68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ammoPrefab: {fileID: 114824861780935368, guid: 5cec6f60da2c4f443866ca7b8e36eaed,
-    type: 2}
+  _ammoID: Shotgun
   _force: 50
   reloadTime: 0
   timeout: 1

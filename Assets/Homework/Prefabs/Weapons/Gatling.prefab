@@ -299,8 +299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64d4687cc7b7e3047abbf862e652b7a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ammoPrefab: {fileID: 114018285122006124, guid: 12baaf34dd37c654ba8335d34cd80ae4,
-    type: 2}
+  _ammoID: Gatling
   _force: 100
   reloadTime: 0
   timeout: 0.1

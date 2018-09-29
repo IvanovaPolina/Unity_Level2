@@ -13,6 +13,7 @@ namespace Homework
 		public SelectionController SelectionController { get; private set; }
 		public WeaponController WeaponController { get; private set; }
 		public TeammateController TeammateController { get; private set; }
+		public ObjectsPool ObjectsPool { get; private set; }
 
 		private void Awake() {
 			// проверяем создание ЕДИНСТВЕННОГО экземпляра данного класса
@@ -26,6 +27,7 @@ namespace Homework
 			SelectionController = gameObject.AddComponent<SelectionController>();
 			WeaponController = gameObject.AddComponent<WeaponController>();
 			TeammateController = gameObject.AddComponent<TeammateController>();
+			ObjectsPool = GetComponent<ObjectsPool>();
 		}
 	}
 }

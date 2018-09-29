@@ -8,6 +8,10 @@ namespace Homework
 	public sealed class Bullet : Ammo
 	{
 		[SerializeField]
+		private string poolID;
+		[SerializeField]
+		private int bulletsCount = 50;
+		[SerializeField]
 		private float lifetime = 5f;		// время существования пули
 		[SerializeField]
 		private LayerMask layerMask;    // слои, в которые может попадать пуля
@@ -15,15 +19,20 @@ namespace Homework
 		private bool isHitted = false;
 		private float speed;    // скорость пули
 
+		public override string PoolID { get { return poolID; } }
+		public override int ObjectsCount { get { return bulletsCount; } }
+
 		/// <summary>
 		/// Задаёт изначальную скорость пули
 		/// </summary>
-		public override void Initialize(float force) {
+		public override void Initialize(Transform firepoint, float force) {
+			Position = firepoint.position;
+			Rotation = firepoint.rotation;
+			CancelInvoke();
+			isHitted = false;	// для переиспользования пули
 			speed = force;
-		}
-
-		private void Start() {
-			Destroy(InstanceObject, lifetime);
+			Invoke("Disable", lifetime);
+			gameObject.SetActive(true);
 		}
 
 		private void FixedUpdate() {
@@ -35,7 +44,7 @@ namespace Homework
 				Position = hit.point;
 				// Наносим урон, меняем дамаг и уничтожаем пулю
 				SetDamage(hit);
-				Destroy(InstanceObject, 0.3f);
+				Disable();
 			}
 			else Position = finalPos;
 		}

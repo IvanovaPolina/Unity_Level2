@@ -693,8 +693,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 120255a91b2272342a2d4f52bdc627ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ammoPrefab: {fileID: 114745302142430812, guid: 64971713bfeb9e649ae09dadde3c13a2,
-    type: 2}
+  _ammoID: Pistol
   _force: 150
   reloadTime: 0
   timeout: 0.5

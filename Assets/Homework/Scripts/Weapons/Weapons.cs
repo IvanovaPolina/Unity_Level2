@@ -8,8 +8,7 @@ namespace Homework
 	public abstract class Weapons : BaseSceneObject
 	{
 		[SerializeField]
-		protected Ammo _ammoPrefab;
-
+		protected string _ammoID;
 		// Сила выстрела
 		[SerializeField]
 		protected float _force = 50f;
