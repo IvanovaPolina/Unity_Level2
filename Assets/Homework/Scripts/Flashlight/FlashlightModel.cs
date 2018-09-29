@@ -1,10 +1,32 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Homework
 {
 	public sealed class FlashlightModel : MonoBehaviour
 	{
+		/// <summary>
+		/// Подписываемся, если хотим отслеживать текущий заряд фонарика
+		/// </summary>
+		public static UnityAction<float, float> OnChargeChanged;
+		[Range(0.1f, 1f)]
+		/// <summary>
+		/// Максимальный заряд батареи
+		/// </summary>
+		public float batteryCharge = 1f;
+		/// <summary>
+		/// Текущий заряд батареи
+		/// </summary>
+		public float CurrentCharge { get; private set; }
+		[Range(0.01f, 0.2f)]
+		public float changedCharge = 0.05f;	// сколько заряда будет уходить/приходить со скоростью chargeSpeed
+		public float chargeSpeed = 1f;     // скорость зарядки/разрядки батареи
+		/// <summary>
+		/// Сколько процентов заряда должно быть, чтобы фонарик можно было включить
+		/// </summary>
+		[Range(0, 1)]
+		public float minChargeInPercent = 0.3f;
 		/// <summary>
 		/// Включен или выключен фонарик?
 		/// </summary>
@@ -15,31 +37,11 @@ namespace Homework
 				return _light.enabled;
 			}
 		}
-
 		private Light _light;
-		/// <summary>
-		/// Максимальный заряд батареи
-		/// </summary>
-		public float batteryCharge = 10f;
-		/// <summary>
-		/// Текущий заряд батареи
-		/// </summary>
-		public float CurrentCharge { get { return currentCharge; } }
-		private float currentCharge;
-		public float chargeSpeed = 1f;     // скорость зарядки/разрядки батареи
-		/// <summary>
-		/// Скорость зарядки/разрядки батареи с учетом времени
-		/// </summary>
-		public float ChargeSpeedInTime { get { return chargeSpeed * Time.deltaTime; } }
-		/// <summary>
-		/// Сколько процентов заряда должно быть, чтобы фонарик можно было включить
-		/// </summary>
-		[Range(0, 1)]
-		public float minChargeInPercent = 0.3f;
 
 		private void Awake() {
 			_light = GetComponent<Light>();
-			currentCharge = batteryCharge;      // в начале игры делаем полный заряд батареи
+			CurrentCharge = batteryCharge;      // в начале игры делаем полный заряд батареи
 		}
 
 		/// <summary>
@@ -62,23 +64,25 @@ namespace Homework
 		/// Заряжает батарейку
 		/// </summary>
 		IEnumerator IncrementCharge() {
-			while(!IsOn && currentCharge < batteryCharge) {
-				currentCharge += ChargeSpeedInTime;
-				yield return null;
+			while (!IsOn && CurrentCharge < batteryCharge) {
+				CurrentCharge += changedCharge;
+				if(OnChargeChanged != null) OnChargeChanged.Invoke(CurrentCharge, minChargeInPercent);
+				yield return new WaitForSeconds(chargeSpeed);
 			}
-			if (currentCharge >= batteryCharge)
-				currentCharge = batteryCharge;
+			if (CurrentCharge >= batteryCharge)
+				CurrentCharge = batteryCharge;
 		}
 
 		/// <summary>
 		/// Разряжает батарейку
 		/// </summary>
 		IEnumerator DecrementCharge() {
-			while (IsOn && currentCharge > 0) {
-				currentCharge -= ChargeSpeedInTime;
-				yield return null;
+			while (IsOn && CurrentCharge > 0) {
+				CurrentCharge -= changedCharge;
+				if (OnChargeChanged != null) OnChargeChanged.Invoke(CurrentCharge, minChargeInPercent);
+				yield return new WaitForSeconds(chargeSpeed);
 			}
-			if (currentCharge <= 0) currentCharge = 0;
+			if (CurrentCharge <= 0) CurrentCharge = 0;
 		}
 	}
 }
