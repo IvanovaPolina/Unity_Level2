@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace Homework
+﻿namespace Homework
 {
 	public sealed class WeaponController : BaseController
 	{
@@ -39,8 +37,9 @@ namespace Homework
 		/// Функция вызова выстрела из текущего оружия
 		/// </summary>
 		public void Fire() {
-			if (weapons.Length > currentWeapon && weapons[currentWeapon])
+			if (weapons.Length > currentWeapon && weapons[currentWeapon]) {
 				weapons[currentWeapon].Fire();
+			}
 		}
 	}
 }

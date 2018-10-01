@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 namespace Homework
 {
@@ -7,6 +8,7 @@ namespace Homework
 	/// </summary>
 	public abstract class Weapons : BaseSceneObject
 	{
+		public static UnityAction<GameObject> OnFire;
 		[SerializeField]
 		protected string _ammoID;
 		// Сила выстрела

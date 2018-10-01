@@ -8,11 +8,12 @@ namespace Homework
 	public sealed class SingleBarreledFirearms : Weapons
 	{
 		[SerializeField]
-		private Transform _firepoint;	// Позиция для выстрелов
+		private Transform _firepoint;   // Позиция для выстрелов
 
 		public override void Fire() {
 			if (!TryShoot()) return;
 			Ammo ammo = ObjectsPool.Instance.GetObject(_ammoID) as Ammo;
+			if (OnFire != null) OnFire.Invoke(_firepoint.parent.gameObject);
 			ammo.Initialize(_firepoint, _force);
 		}
 

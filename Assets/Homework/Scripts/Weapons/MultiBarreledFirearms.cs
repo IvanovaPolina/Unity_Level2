@@ -14,6 +14,7 @@ namespace Homework
 		public override void Fire() {
 			if (!TryShoot()) return;
 			Ammo ammo = ObjectsPool.Instance.GetObject(_ammoID) as Ammo;
+			if (OnFire != null) OnFire.Invoke(firepoints[currentFirepoint].parent.gameObject);
 			ammo.Initialize(firepoints[currentFirepoint], _force);
 			currentFirepoint++;
 			if (currentFirepoint >= firepoints.Length)
