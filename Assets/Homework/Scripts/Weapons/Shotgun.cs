@@ -16,9 +16,9 @@ namespace Homework
 			if (!TryShoot()) return;
 			for (int i = 0; i < ammoCount; i++) {
 				Ammo ammo = ObjectsPool.Instance.GetObject(_ammoID) as Ammo;
-				if (OnFire != null) OnFire.Invoke(_firepoint.parent.gameObject);
 				ammo.Initialize(_firepoint, _force);
 			}
+			if (OnFire != null) OnFire.Invoke(_firepoint.parent.gameObject);
 		}
 
 		public override void Reload() {

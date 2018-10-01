@@ -46,7 +46,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1350076167846628
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 23761585982481368}
   - component: {fileID: 95278912026037654}
   - component: {fileID: 82439302876309102}
-  - component: {fileID: 114587217540885212}
+  - component: {fileID: 114124888955182818}
   m_Layer: 0
   m_Name: HandgunLeft
   m_TagString: Untagged
@@ -159,7 +159,7 @@ GameObject:
   - component: {fileID: 23830902423869564}
   - component: {fileID: 95113046456454196}
   - component: {fileID: 82555064869718084}
-  - component: {fileID: 114695987052454722}
+  - component: {fileID: 114705509039706592}
   m_Layer: 0
   m_Name: HandgunRight
   m_TagString: Untagged
@@ -169,7 +169,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1906261592865494
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
@@ -218,12 +218,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1906261592865494}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.15, y: -0.047, z: 0.36}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.05, y: 0.3, z: 11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4600654407841864}
-  m_RootOrder: 2
+  m_Father: {fileID: 4660266822608050}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4235601130611988
 Transform:
@@ -257,11 +257,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1350076167846628}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.15, y: -0.047, z: 0.36}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.05, y: 0.3, z: 11}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4600654407841864}
+  m_Father: {fileID: 4598848898787496}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4598848898787496
@@ -272,11 +272,12 @@ Transform:
   m_GameObject: {fileID: 1881465756819932}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.15, y: -0.05, z: 0.25}
-  m_LocalScale: {x: -0.01, y: 0.01, z: 0.0100000035}
+  m_LocalScale: {x: -0.0100000035, y: 0.01, z: 0.01}
   m_Children:
   - {fileID: 4264615762629866}
   - {fileID: 4052294457750840}
   - {fileID: 4235601130611988}
+  - {fileID: 4384643093212358}
   m_Father: {fileID: 4600654407841864}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -292,8 +293,6 @@ Transform:
   m_Children:
   - {fileID: 4660266822608050}
   - {fileID: 4598848898787496}
-  - {fileID: 4117907249618396}
-  - {fileID: 4384643093212358}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -303,13 +302,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1893308815575530}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.15, y: -0.05, z: 0.25}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_LocalScale: {x: 0.0100000035, y: 0.01, z: 0.0100000035}
   m_Children:
   - {fileID: 4722251723999002}
   - {fileID: 4896825651833830}
   - {fileID: 4892518757698844}
+  - {fileID: 4117907249618396}
   m_Father: {fileID: 4600654407841864}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -914,7 +914,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114587217540885212
+--- !u!114 &114124888955182818
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -925,7 +925,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31d3be6349a49854ab7c9d8597459856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114695987052454722
+--- !u!114 &114705509039706592
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
