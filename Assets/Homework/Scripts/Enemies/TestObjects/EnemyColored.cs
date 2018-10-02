@@ -18,10 +18,10 @@ namespace Homework
 		private float lastDamagedTime = 0;	// храним время последнего получения дамага
 
 		public override void ApplyDamage(float damage) {
-			if (health <= 0) return;
-			health -= damage;
+			if (currentHealth <= 0) return;
+			currentHealth -= damage;
 			Color = Random.ColorHSV();
-			if (health <= 0) Die();
+			if (currentHealth <= 0) Die();
 		}
 
 		protected override void Die() {

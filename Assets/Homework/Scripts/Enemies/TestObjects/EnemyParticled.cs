@@ -10,11 +10,11 @@ namespace Homework
 		private AudioClip bloodClip;
 
 		public override void ApplyDamage(float damage) {
-			if (health <= 0) return;
-			health -= damage;
+			if (currentHealth <= 0) return;
+			currentHealth -= damage;
 			ParticleSystem.Play();
 			AudioSource.PlayClipAtPoint(bloodClip, Position, 1f);
-			if (health <= 0) Die();
+			if (currentHealth <= 0) Die();
 		}
 
 		protected override void Die() {

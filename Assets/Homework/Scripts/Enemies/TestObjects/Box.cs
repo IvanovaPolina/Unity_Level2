@@ -8,7 +8,12 @@ namespace Homework
 	public abstract class Box : BaseSceneObject, ISetDamage
 	{
 		[SerializeField]
-		protected float health = 100f;
+		protected float currentHealth = 100f;
+		public float CurrentHealth { get { return currentHealth; } }
+
+		[SerializeField]
+		protected float maxHealth = 100f;
+		public float MaxHealth { get { return maxHealth; } }
 
 		public abstract void ApplyDamage(float damage);
 

@@ -18,9 +18,9 @@ namespace Homework
 		private AudioClip explosionClip;
 
 		public override void ApplyDamage(float damage) {
-			if (health <= 0) return;
-			health -= damage;
-			if (health <= 0) {
+			if (currentHealth <= 0) return;
+			currentHealth -= damage;
+			if (currentHealth <= 0) {
 				Die();
 				return;
 			}

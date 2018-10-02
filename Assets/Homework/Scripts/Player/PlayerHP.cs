@@ -5,10 +5,10 @@ namespace Homework
 	public sealed class PlayerHP : Box
 	{
 		public override void ApplyDamage(float damage) {
-			if (health <= 0) return;
-			health -= damage;
+			if (currentHealth <= 0) return;
+			currentHealth -= damage;
 			// проигрываем звук
-			if (health <= 0) Die();
+			if (currentHealth <= 0) Die();
 		}
 
 		protected override void Die() {
