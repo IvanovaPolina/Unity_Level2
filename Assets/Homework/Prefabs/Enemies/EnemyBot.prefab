@@ -988,8 +988,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.9, y: 2.7, z: 1}
-  m_Center: {x: -0.05, y: 0.4, z: 0}
+  m_Size: {x: 1, y: 2.7, z: 0.99}
+  m_Center: {x: 0, y: 0.4, z: 0}
 --- !u!82 &82428118103024614
 AudioSource:
   m_ObjectHideFlags: 1
@@ -1289,7 +1289,6 @@ MonoBehaviour:
   maxRadiusRandomWP: 15
   eyesTransform: {fileID: 4034854969654472}
   searchDistance: 30
-  attackType: 0
   meleeDistance: 4
   rangedDistance: 20
   meleeWeapon: {fileID: 114500256593422116}
@@ -1315,7 +1314,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1859810682876630}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.48
   m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50

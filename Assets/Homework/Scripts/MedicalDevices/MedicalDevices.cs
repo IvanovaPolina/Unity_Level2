@@ -5,15 +5,18 @@ namespace Homework
 	/// <summary>
 	/// Базовый класс для всех медикаментов
 	/// </summary>
-	public abstract class MedicalDevices : BaseSceneObject, ISelectable
+	public class MedicalDevices : BaseSceneObject
 	{
 		// Сколько HP восстанавливает данный медикамент
-		[SerializeField] protected float treatmentAmount = 10f;
+		[SerializeField]
+		private float treatmentAmount = 10f;
 
-		public virtual void Interact() {
-			// прибавляем Player'у HP
-			// проигрываем звук взаимодействия с объектом
-			Destroy(InstanceObject);
+		private void OnTriggerEnter(Collider other) {
+			ISetDamage obj = other.GetComponent<ISetDamage>();
+			if (obj != null) {
+				obj.ApplyDamage(-treatmentAmount);
+				Destroy(InstanceObject);
+			}
 		}
 	}
 }
