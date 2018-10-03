@@ -27,6 +27,7 @@ namespace Homework
 		protected override void Die() {
 			Color = Color.red;
 			Collider.enabled = false;
+			Rigidbody.constraints = RigidbodyConstraints.None;
 			Rigidbody.useGravity = true;
 			Destroy(InstanceObject, 2f);
 		}

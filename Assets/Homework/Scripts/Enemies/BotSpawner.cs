@@ -6,13 +6,15 @@ namespace Homework
 	{
 		public bool useRandomWP;
 		[SerializeField]
-		private EnemyBot prefab;	// префаб бота, которого будем спавнить
+		private EnemyBot prefab;    // префаб бота, которого будем спавнить
+		[SerializeField]
+		private EnemyBot.AttackType attackType;
 		private EnemyBot instance;  // ссылка на заспавненного бота
 
 		private void Update() {
 			if(!instance) {
 				instance = Instantiate(prefab, transform.position, transform.rotation);
-				instance.Initialize(this);
+				instance.Initialize(this, attackType);
 			}
 		}
 	}

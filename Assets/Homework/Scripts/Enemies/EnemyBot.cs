@@ -27,19 +27,39 @@ namespace Homework
 		private Transform playerTransform;	// позиция игрока
 		private bool seenPlayer;    // флаг, определяющий, заметили ли мы игрока
 		[SerializeField]
-		private float searchDistance = 30f;		// дистанция обнаружения игрока
+		private float searchDistance = 30f;     // дистанция обнаружения игрока
+		
 		[SerializeField]
-		private float attackDistance = 20f;		// дистанция атаки игрока
+		private float meleeDistance = 2f;       // дистанция ближней атаки
+		[SerializeField]
+		private float rangedDistance = 20f;     // дистанция дальней атаки
+		private float currentDistance;
+		[SerializeField]
+		private MeleeWeapon meleeWeapon;
+		[SerializeField]
+		private Weapons rangedWeapon;
+		private Weapons currentWeapon;
 
-		private Weapons weapon;     // оружие, из которого будем стрелять
+		public enum AttackType
+		{
+			Melee = 0,
+			Ranged = 1
+		}
 
 		public void SetTarget(Transform target) {
 			playerTransform = target;
 		}
 
-		public void Initialize(BotSpawner spawner) {
+		public void Initialize(BotSpawner spawner, AttackType attackType) {
 			agent = GetComponent<NavMeshAgent>();
-			weapon = GetComponentInChildren<Weapons>(true);
+			if (attackType == AttackType.Melee) {
+				currentWeapon = meleeWeapon;
+				currentDistance = meleeDistance;
+			} else if (attackType == AttackType.Ranged) {
+				currentWeapon = rangedWeapon;
+				currentDistance = rangedDistance;
+			}
+			currentWeapon.IsVisible = true;
 			useRandomWP = spawner.useRandomWP;
 			if (useRandomWP) randomPos = GetRandomWayPoint();
 			else wayPoints = spawner.GetComponentsInChildren<WayPoint>();
@@ -86,15 +106,15 @@ namespace Homework
 		private void FindAndAttack() {
 			if (!playerTransform) return;
 			float distance = Vector3.Distance(Position, playerTransform.position);
-			if (distance < attackDistance) {
+			if (distance < currentDistance) {
 				seenPlayer = !IsTargetBlocked();
 				if (seenPlayer) {
 					agent.SetDestination(playerTransform.position);
-					if(weapon) weapon.Fire();
+					currentWeapon.Fire();
 				}
 			} else if (distance < searchDistance) {
 				seenPlayer = !IsTargetBlocked();
-				if(seenPlayer) agent.SetDestination(playerTransform.position);
+				if (seenPlayer) agent.SetDestination(playerTransform.position);
 			} else seenPlayer = false;
 		}
 

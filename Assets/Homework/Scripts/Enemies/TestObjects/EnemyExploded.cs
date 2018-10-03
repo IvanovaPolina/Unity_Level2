@@ -36,6 +36,7 @@ namespace Homework
 				ISetDamage obj = purposes[i].GetComponent<ISetDamage>();
 				if (obj != null) {	// если объект может получить урон
 					obj.ApplyDamage(explosionDamage);   // наносим урон
+					Rigidbody.constraints = RigidbodyConstraints.None;
 					ApplyForce(purposes[i]);	// отталкиваем объект взрывной волной
 				}
 			}

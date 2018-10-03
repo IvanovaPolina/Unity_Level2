@@ -21,6 +21,7 @@ namespace Homework
 			var partMain = ParticleSystem.main;
 			partMain.loop = true;
 			Collider.enabled = false;
+			Rigidbody.constraints = RigidbodyConstraints.None;
 			Rigidbody.AddTorque(deathTorque, ForceMode.Impulse);
 			Rigidbody.useGravity = true;
 			Destroy(InstanceObject, 2f);

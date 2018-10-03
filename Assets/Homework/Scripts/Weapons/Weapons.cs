@@ -28,9 +28,8 @@ namespace Homework
 		public abstract void Fire();
 
 		/// <summary>
-		/// Проверяет, можно ли стрелять
+		/// Проверяет, можно ли атаковать
 		/// </summary>
-		/// <returns>true - если стрелять можно, false - если нет</returns>
 		protected bool TryShoot() {
 			if (Time.time - lastShotTime < timeout) return false;
 			lastShotTime = Time.time;
