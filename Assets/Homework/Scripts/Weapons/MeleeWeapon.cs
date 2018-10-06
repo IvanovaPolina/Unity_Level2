@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 namespace Homework
 {
 	public class MeleeWeapon : Weapons
 	{
+		public static UnityAction OnAttack;
 		[SerializeField]
 		private Transform startHitPoint;
 		[SerializeField]
@@ -26,6 +28,7 @@ namespace Homework
 		public override void Fire() {
 			if (!TryShoot()) return;
 			if (OnFire != null) OnFire.Invoke(endHitPoint.parent.gameObject);
+			if (OnAttack != null) OnAttack.Invoke();
 			Invoke("Linecast", linecastTime);
 		}
 

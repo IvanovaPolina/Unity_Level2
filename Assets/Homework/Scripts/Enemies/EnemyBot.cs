@@ -1,10 +1,15 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 namespace Homework
 {
 	public class EnemyBot : BaseSceneObject, ISetDamage
 	{
+		public static UnityAction OnPassAway;
+		public static UnityAction OnApplyDamage;
+		public static UnityAction OnAttack;
+
 		public bool IsAlive { get { return currentHealth > 0; } }
 		[SerializeField]
 		private float maxHealth = 100f;
@@ -33,7 +38,7 @@ namespace Homework
 		private float meleeDistance = 2f;       // дистанция ближней атаки
 		[SerializeField]
 		private float rangedDistance = 20f;     // дистанция дальней атаки
-		private float currentDistance;
+		private float attackDistance;
 		[SerializeField]
 		private MeleeWeapon meleeWeapon;
 		[SerializeField]
@@ -54,10 +59,10 @@ namespace Homework
 			agent = GetComponent<NavMeshAgent>();
 			if (attackType == AttackType.Melee) {
 				currentWeapon = meleeWeapon;
-				currentDistance = meleeDistance;
+				attackDistance = meleeDistance;
 			} else if (attackType == AttackType.Ranged) {
 				currentWeapon = rangedWeapon;
-				currentDistance = rangedDistance;
+				attackDistance = rangedDistance;
 			}
 			currentWeapon.IsVisible = true;
 			useRandomWP = spawner.useRandomWP;
@@ -106,11 +111,12 @@ namespace Homework
 		private void FindAndAttack() {
 			if (!playerTransform) return;
 			float distance = Vector3.Distance(Position, playerTransform.position);
-			if (distance < currentDistance) {
+			if (distance < attackDistance) {
 				seenPlayer = !IsTargetBlocked();
 				if (seenPlayer) {
 					agent.SetDestination(playerTransform.position);
 					currentWeapon.Fire();
+					if (OnAttack != null) OnAttack.Invoke();
 				}
 			} else if (distance < searchDistance) {
 				seenPlayer = !IsTargetBlocked();
@@ -132,21 +138,26 @@ namespace Homework
 		public void ApplyDamage(float damage) {
 			if (!IsAlive) return;
 			currentHealth -= damage;
+			if (OnApplyDamage != null) OnApplyDamage.Invoke();
 			if (!IsAlive) Death();
 		}
 
 		public void Death() {
 			Main.Instance.EnemyBotsController.RemoveBot(this);
-			foreach (var child in GetComponentsInChildren<Transform>()) {
-				child.SetParent(null);
-				Destroy(child.gameObject, 3f);
-				Collider col = child.GetComponent<Collider>();
-				if (col) col.enabled = true;
+			//foreach (var child in GetComponentsInChildren<Transform>()) {
+			//	child.SetParent(null);
+			//	Destroy(child.gameObject, 3f);
+			//	Collider col = child.GetComponent<Collider>();
+			//	if (col) col.enabled = true;
 
-				Rigidbody rb = child.gameObject.AddComponent<Rigidbody>();
-				rb.mass = 5;
-				rb.AddForce(Vector3.up * Random.Range(5f, 30f), ForceMode.Impulse);
-			}
+			//	Rigidbody rb = child.gameObject.AddComponent<Rigidbody>();
+			//	rb.mass = 5;
+			//	rb.AddForce(Vector3.up * Random.Range(5f, 30f), ForceMode.Impulse);
+			//}
+			agent.speed = 0;
+			Collider.enabled = false;
+			if (OnPassAway != null) OnPassAway.Invoke();
+			Destroy(InstanceObject, 3f);
 		}
 	}
 }
