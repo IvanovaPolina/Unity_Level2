@@ -1271,7 +1271,7 @@ MonoBehaviour:
   _ammoID: Pistol
   _force: 100
   reloadTime: 0
-  timeout: 2
+  timeout: 1
   _firepoint: {fileID: 4047686380550756}
 --- !u!114 &114969976206333420
 MonoBehaviour:
