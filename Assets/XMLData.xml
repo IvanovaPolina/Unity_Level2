@@ -1,0 +1,5 @@
+<PlayerData>
+  <name value="Player" />
+  <HP value="100" />
+  <isVisible value="False" />
+</PlayerData>
