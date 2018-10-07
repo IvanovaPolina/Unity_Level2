@@ -15,14 +15,12 @@ namespace Homework
 			base.Awake();
 			EnemyBot.OnPassAway += Death;
 			EnemyBot.OnApplyDamage += ApplyDamage;
-			//EnemyBot.OnAttack += Attack;
 			MeleeWeapon.OnAttack += Attack;
 		}
 
 		private void OnDestroy() {
 			EnemyBot.OnPassAway -= Death;
 			EnemyBot.OnApplyDamage -= ApplyDamage;
-			//EnemyBot.OnAttack -= Attack;
 			MeleeWeapon.OnAttack -= Attack;
 		}
 

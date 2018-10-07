@@ -8,7 +8,6 @@ namespace Homework
 	{
 		public static UnityAction OnPassAway;
 		public static UnityAction OnApplyDamage;
-		public static UnityAction OnAttack;
 
 		public bool IsAlive { get { return currentHealth > 0; } }
 		[SerializeField]
@@ -116,7 +115,6 @@ namespace Homework
 				if (seenPlayer) {
 					agent.SetDestination(playerTransform.position);
 					currentWeapon.Fire();
-					if (OnAttack != null) OnAttack.Invoke();
 				}
 			} else if (distance < searchDistance) {
 				seenPlayer = !IsTargetBlocked();
