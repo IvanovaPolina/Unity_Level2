@@ -24,6 +24,8 @@ namespace Homework
 				Main.Instance.TeammateController.Follow();
 			if (Input.GetButtonDown("TeammateCommand"))
 				Main.Instance.TeammateController.MoveCommand();
+			if (Input.GetKeyDown(KeyCode.P))
+				Main.Instance.MenuController.SwitchPausePanel();
 		}
 	}
 }

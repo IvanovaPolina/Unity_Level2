@@ -15,6 +15,7 @@ namespace Homework
 		public TeammateController TeammateController { get; private set; }
 		public ObjectsPool ObjectsPool { get; private set; }
 		public EnemyBotsController EnemyBotsController { get; private set; }
+		public MenuController MenuController { get; private set; }
 
 		private void Awake() {
 			// проверяем создание ЕДИНСТВЕННОГО экземпляра данного класса
@@ -30,6 +31,7 @@ namespace Homework
 			TeammateController = gameObject.AddComponent<TeammateController>();
 			ObjectsPool = GetComponent<ObjectsPool>();
 			EnemyBotsController = gameObject.AddComponent<EnemyBotsController>();
+			MenuController = gameObject.AddComponent<MenuController>();
 		}
 	}
 }

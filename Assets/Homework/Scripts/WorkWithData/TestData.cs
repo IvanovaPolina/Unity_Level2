@@ -1,54 +1,62 @@
-﻿using Homework;
-using System.IO;
+﻿using System.IO;
 using UnityEngine;
 
-public class TestData : MonoBehaviour {
-
-	public enum DataProviders
+namespace Homework.Data
+{
+	public class TestData : MonoBehaviour
 	{
-		TXT,
-		XML,
-		JSON,
-		PLAYER_PREFS,
-		DAT
-	}
-
-	[SerializeField]
-	private DataProviders provider = DataProviders.JSON;
-	private DataManager dataManager;
-
-	private void Start() {
-		string path = Path.Combine(Application.dataPath, "Saves");
-		var playerData = new PlayerData() {
-			name = PlayerModel.LocalPlayer.Name,
-			HP = PlayerModel.LocalPlayer.CurrentHealth,
-			isVisible = PlayerModel.LocalPlayer.IsVisible
-		};
-
-		dataManager = new DataManager();
-		switch (provider) {
-			case DataProviders.TXT:
-				dataManager.SetData<StreamData>();
-				break;
-			case DataProviders.XML:
-				dataManager.SetData<XMLData>();
-				break;
-			case DataProviders.JSON:
-				dataManager.SetData<JsonData>();
-				break;
-			case DataProviders.PLAYER_PREFS:
-				dataManager.SetData<PlayerPrefsData>();
-				break;
-			case DataProviders.DAT:
-				dataManager.SetData<BinaryData>();
-				break;
+		public enum DataProviders
+		{
+			TXT,
+			XML,
+			JSON,
+			PLAYER_PREFS,
+			DAT
 		}
 
-		if (dataManager == null) return;
-		dataManager.SetOptions(path);
-		dataManager.Save(playerData);
+		[SerializeField]
+		private DataProviders provider = DataProviders.JSON;
+		private DataManager dataManager;
+		private string path;
 
-		var playerLoaded = dataManager.Load();
-		Debug.Log(playerLoaded);
+		private void Start() {
+			path = Path.Combine(Application.dataPath, "Saves");
+			dataManager = new DataManager();
+			switch (provider) {
+				case DataProviders.TXT:
+					dataManager.SetData<StreamData>();
+					break;
+				case DataProviders.XML:
+					dataManager.SetData<XMLData>();
+					break;
+				case DataProviders.JSON:
+					dataManager.SetData<JsonData>();
+					break;
+				case DataProviders.PLAYER_PREFS:
+					dataManager.SetData<PlayerPrefsData>();
+					break;
+				case DataProviders.DAT:
+					dataManager.SetData<BinaryData>();
+					break;
+			}
+		}
+
+		public void Save() {
+			var playerData = new PlayerData() {
+				name = PlayerModel.LocalPlayer.Name,
+				HP = PlayerModel.LocalPlayer.CurrentHealth
+			};
+			dataManager.SetOptions(path);
+			dataManager.Save(playerData);
+		}
+
+		public void Load() {
+			dataManager.SetOptions(path);
+			var playerLoaded = dataManager.Load();
+			PlayerModel.LocalPlayer.Name = playerLoaded.name;
+			PlayerModel.LocalPlayer.CurrentHealth = playerLoaded.HP;
+			//PlayerModel.LocalPlayer.IsVisible = playerLoaded.isVisible; // оружие становится isVisible = false, поэтому заменю вскоре на подстчет очков
+			Debug.Log(playerLoaded);
+		}
 	}
 }

@@ -13,7 +13,7 @@ namespace Homework
 		[Range(1f, 1000f)]
 		[SerializeField]
 		private float currentHealth = 100f;
-		public float CurrentHealth { get { return currentHealth; } }
+		public float CurrentHealth { get { return currentHealth; } set { currentHealth = value; } }
 
 		[HideInInspector]
 		public Weapons[] weapons;
