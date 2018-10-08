@@ -1,4 +1,5 @@
 ﻿using Homework;
+using System.IO;
 using UnityEngine;
 
 public class TestData : MonoBehaviour {
@@ -8,7 +9,8 @@ public class TestData : MonoBehaviour {
 		TXT,
 		XML,
 		JSON,
-		PLAYER_PREFS
+		PLAYER_PREFS,
+		DAT
 	}
 
 	[SerializeField]
@@ -16,7 +18,7 @@ public class TestData : MonoBehaviour {
 	private DataManager dataManager;
 
 	private void Start() {
-		string path = Application.dataPath;
+		string path = Path.Combine(Application.dataPath, "Saves");
 		var playerData = new PlayerData() {
 			name = PlayerModel.LocalPlayer.Name,
 			HP = PlayerModel.LocalPlayer.CurrentHealth,
@@ -36,6 +38,9 @@ public class TestData : MonoBehaviour {
 				break;
 			case DataProviders.PLAYER_PREFS:
 				dataManager.SetData<PlayerPrefsData>();
+				break;
+			case DataProviders.DAT:
+				dataManager.SetData<BinaryData>();
 				break;
 		}
 

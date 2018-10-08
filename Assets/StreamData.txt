@@ -1,3 +1,0 @@
-Player
-100
-False
