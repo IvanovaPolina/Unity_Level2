@@ -231,6 +231,7 @@ GameObject:
   - component: {fileID: 65998573843010104}
   - component: {fileID: 114969976206333420}
   - component: {fileID: 195262683090604788}
+  - component: {fileID: 114990970614790626}
   m_Layer: 0
   m_Name: EnemyBot
   m_TagString: Untagged
@@ -1293,6 +1294,18 @@ MonoBehaviour:
   rangedDistance: 20
   meleeWeapon: {fileID: 114500256593422116}
   rangedWeapon: {fileID: 114917376908676290}
+--- !u!114 &114990970614790626
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1859810682876630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20151f74cfa267b43a975dda2a70853f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 114704261922787670, guid: 9038565ee573e494da6d16ba71b590db, type: 2}
 --- !u!136 &136673996083590428
 CapsuleCollider:
   m_ObjectHideFlags: 1
