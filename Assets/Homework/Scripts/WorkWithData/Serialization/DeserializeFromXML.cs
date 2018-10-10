@@ -14,20 +14,20 @@ namespace Homework.Data.Serialization
 		public void Save(string path) {
 			GameObject[] allObjs = (GameObject[])GameObject.FindObjectsOfType(typeof(ISaveLoadObject)); // находим все объекты, реализующие интерфейс
 			List<GameObjectData> dataList = new List<GameObjectData>(); // список объектов, которые будем сохранять
-			foreach (var o in allObjs) {    // определяем, 
+			foreach (var o in allObjs) {
 				//if (o.GetComponent<ISaveLoadObject>().GameObjectScript == _prefab.GetComponent<ISaveLoadObject>().GameObjectScript) {
-				if (UnityEditor.PrefabUtility.GetPrefabType(o) == UnityEditor.PrefabType.PrefabInstance) {
-					if (UnityEditor.PrefabUtility.GetPrefabObject(o) == _prefab) {   // если объект получен из данного префаба
-						var trans = o.transform;
-						dataList.Add(new GameObjectData {
-							name = o.name,
-							HP = o == PlayerModel.LocalPlayer.InstanceObject ? PlayerModel.LocalPlayer.CurrentHealth : 0,
-							position = trans.position,
-							quaternion = trans.rotation,
-							scale = trans.localScale
-						});
-					}
-				}
+				//if (UnityEditor.PrefabUtility.GetPrefabType(o) == UnityEditor.PrefabType.PrefabInstance) {
+				//	if (UnityEditor.PrefabUtility.GetPrefabObject(o) == _prefab) {   // если объект получен из данного префаба
+				//		var trans = o.transform;
+				//		dataList.Add(new GameObjectData {
+				//			name = o.name,
+				//			HP = o == PlayerModel.LocalPlayer.InstanceObject ? PlayerModel.LocalPlayer.CurrentHealth : 0,
+				//			position = trans.position,
+				//			quaternion = trans.rotation,
+				//			scale = trans.localScale
+				//		});
+				//	}
+				//}
 			}
 			SerializeToXML.Save(dataList.ToArray(), path);
 		}
