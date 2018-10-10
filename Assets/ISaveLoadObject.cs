@@ -1,4 +1,5 @@
 ﻿using Homework.Data;
+using UnityEngine;
 
 namespace Homework
 {
@@ -8,5 +9,6 @@ namespace Homework
 	public interface ISaveLoadObject
 	{
 		GameObjectData ObjectData { get; set; }
+		Component GameObjectScript { get; }
 	}
 }

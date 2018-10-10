@@ -14,6 +14,7 @@ namespace Homework
 
 		public GameObjectData ObjectData { get { return objData; } set { objData = value; } }
 		private GameObjectData objData;
+		public Component GameObjectScript { get { return this; } }
 
 		protected override void Awake() {
 			base.Awake();
