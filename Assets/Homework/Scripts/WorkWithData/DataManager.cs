@@ -8,19 +8,19 @@
 			dataProvider = new T();
 		}
 
-		public void Save(PlayerData playerData) {
+		public void Save(GameObjectData objData) {
 			if (dataProvider != null)
-				dataProvider.Save(playerData);
+				dataProvider.Save(objData);
 		}
 
-		public PlayerData Load() {
-			if (dataProvider == null) return default(PlayerData);
+		public GameObjectData Load() {
+			if (dataProvider == null) return default(GameObjectData);
 			return dataProvider.Load();
 		}
 
-		public void SetOptions(string path) {
+		public void SetOptions(string path, int filenameIndex) {
 			if (dataProvider != null)
-				dataProvider.SetOptions(path);
+				dataProvider.SetOptions(path, filenameIndex);
 		}
 	}
 }

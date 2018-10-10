@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using Homework.Data;
+using UnityEngine;
 
 namespace Homework
 {
-	public sealed class PlayerModel : BaseSceneObject, ISetDamage
+	public sealed class PlayerModel : BaseSceneObject, ISetDamage, ISaveLoadObject
 	{
 		public static PlayerModel LocalPlayer { get; private set; }
 
@@ -19,12 +20,22 @@ namespace Homework
 		public Weapons[] weapons;
 		public float maxDistanceToControlTeammate = 40f;
 
+		public GameObjectData ObjectData { get { return objData; } set { objData = value; } }
+		private GameObjectData objData;
+
 		protected override void Awake() {
 			if (LocalPlayer) DestroyImmediate(this);
 			else LocalPlayer = this;
 			base.Awake();
 
 			weapons = GetComponentsInChildren<Weapons>(true);
+			objData = new GameObjectData() {
+				name = Name,
+				HP = CurrentHealth,
+				position = new GameObjectData.Vector3(Position.x, Position.y, Position.z),
+				quaternion = new GameObjectData.Quaternion(Rotation.x, Rotation.y, Rotation.z, Rotation.w),
+				scale = new GameObjectData.Vector3(Scale.x, Scale.y, Scale.z)
+			};
 		}
 
 		public void ApplyDamage(float damage) {

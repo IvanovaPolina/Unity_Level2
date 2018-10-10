@@ -2,8 +2,8 @@
 {
 	public interface IDataProvider
 	{
-		void Save(PlayerData playerData);
-		PlayerData Load();
-		void SetOptions(string path);
+		void Save(GameObjectData objectData);
+		GameObjectData Load();
+		void SetOptions(string path, int filenameIndex);
 	}
 }

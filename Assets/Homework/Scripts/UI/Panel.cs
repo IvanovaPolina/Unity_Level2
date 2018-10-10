@@ -11,11 +11,12 @@ namespace Homework
 		{
 			Game,
 			Pause
+				// Win, Lose
 		}
 		
 		[SerializeField]
 		private Type type;
-		public Type TypeOfPanel { get { return type; } }
+		public Type PanelType { get { return type; } }
 
 		/// <summary>
 		/// Для продолжения игры

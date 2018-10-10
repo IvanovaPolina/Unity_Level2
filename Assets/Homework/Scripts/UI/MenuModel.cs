@@ -16,7 +16,7 @@ namespace Homework
 
 		public void SwitchPanel(Panel.Type panel) {
 			foreach (var p in panels)
-				p.gameObject.SetActive(p.TypeOfPanel == panel);
+				p.gameObject.SetActive(p.PanelType == panel);
 		}
 	}
 }

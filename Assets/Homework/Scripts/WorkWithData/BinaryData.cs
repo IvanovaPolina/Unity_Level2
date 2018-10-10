@@ -7,17 +7,33 @@ namespace Homework.Data
 	{
 		private string path;
 
-		public PlayerData Load() {
-			var playerData = new PlayerData();
+		public GameObjectData Load() {
+			var objData = new GameObjectData();
 			if (!File.Exists(path)) {
 				Debug.LogFormat("File is not found! Path: " + path);
-				return playerData;
+				return objData;
 			}
 			using (BinaryReader br = new BinaryReader(File.Open(path, FileMode.Open))) {
 				try {
 					while (br.PeekChar() > -1) {
-						playerData.name = br.ReadString();
-						playerData.HP = br.ReadSingle();
+						objData.name = br.ReadString();
+						objData.HP = br.ReadSingle();
+						objData.position = new GameObjectData.Vector3() {
+							x = br.ReadSingle(),
+							y = br.ReadSingle(),
+							z = br.ReadSingle()
+						};
+						objData.quaternion = new GameObjectData.Quaternion() {
+							x = br.ReadSingle(),
+							y = br.ReadSingle(),
+							z = br.ReadSingle(),
+							w = br.ReadSingle()
+						};
+						objData.scale = new GameObjectData.Vector3() {
+							x = br.ReadSingle(),
+							y = br.ReadSingle(),
+							z = br.ReadSingle()
+						};
 					}
 				}
 				catch (System.Exception e) {
@@ -25,19 +41,29 @@ namespace Homework.Data
 				}
 			}
 			Debug.Log("BinaryData loaded successfully");
-			return playerData;
+			return objData;
 		}
 
-		public void Save(PlayerData playerData) {
+		public void Save(GameObjectData objData) {
 			using (BinaryWriter bw = new BinaryWriter(File.Open(path, FileMode.Create))) {
-				bw.Write(playerData.name);
-				bw.Write(playerData.HP);
+				bw.Write(objData.name);
+				bw.Write(objData.HP);
+				bw.Write(objData.position.x);
+				bw.Write(objData.position.y);
+				bw.Write(objData.position.z);
+				bw.Write(objData.quaternion.x);
+				bw.Write(objData.quaternion.y);
+				bw.Write(objData.quaternion.z);
+				bw.Write(objData.quaternion.w);
+				bw.Write(objData.scale.x);
+				bw.Write(objData.scale.y);
+				bw.Write(objData.scale.z);
 			}
 			Debug.Log("BinaryData saved successfully");
 		}
 
-		public void SetOptions(string path) {
-			this.path = Path.Combine(path, "BinaryData.dat");
+		public void SetOptions(string path, int filenameIndex) {
+			this.path = Path.Combine(path, "BinaryData_" + filenameIndex + ".dat");
 		}
 	}
 }
