@@ -1,0 +1,20 @@
+<PlayerData>
+  <name value="Player" />
+  <HP value="100" />
+  <position>
+    <x value="11.96861" />
+    <y value="1.167964" />
+    <z value="-40.3168" />
+  </position>
+  <quaternion>
+    <x value="0" />
+    <y value="0.07932893" />
+    <z value="0" />
+    <w value="-0.9968485" />
+  </quaternion>
+  <scale>
+    <x value="1" />
+    <y value="1" />
+    <z value="1" />
+  </scale>
+</PlayerData>
