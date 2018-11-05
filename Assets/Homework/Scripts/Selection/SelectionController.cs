@@ -1,52 +1,21 @@
-﻿using System.Collections;
+﻿using Homework.Interfaces;
+using UnityEngine;
 
-namespace Homework
+namespace Homework.Controllers
 {
 	public sealed class SelectionController : BaseController
 	{
-		private SelectionModel model;
-
-		private void Awake() {
-			model = FindObjectOfType<SelectionModel>();
-			On();
-		}
-
 		/// <summary>
-		/// Позволяет обнаружать объекты
+		/// Позволяет толкать объект (только для игрока)
 		/// </summary>
-		public override void On() {
-			base.On();
-			StartCoroutine(Linecast());
-		}
-
-		/// <summary>
-		/// Не позволяет обнаружать объекты
-		/// </summary>
-		public override void Off() {
-			base.Off();
-			StopCoroutine(Linecast());
-		}
-
-		/// <summary>
-		/// Переключает режим активации контроллера на противоположный
-		/// </summary>
-		public void Switch() {
-			if (IsEnabled) Off();
-			else On();
-		}
-
-		private IEnumerator Linecast() {
-			while (true) {
-				model.Linecast();
-				yield return null;
+		public void Push() {
+			Transform playerTransform = PlayerModel.LocalPlayer.Transform;
+			RaycastHit hit;
+			if(Physics.Raycast(playerTransform.position, playerTransform.forward, out hit)) {
+				var selectedObj = hit.collider.GetComponent<ISelectable>();
+				if (selectedObj != null && selectedObj.CanPush && hit.distance <= selectedObj.Distance)
+					selectedObj.Push(hit.point - playerTransform.position);
 			}
-		}
-
-		/// <summary>
-		/// Взаимодействует с выделенным объектом
-		/// </summary>
-		public void Interact() {
-			model.Interact();
 		}
 	}
 }

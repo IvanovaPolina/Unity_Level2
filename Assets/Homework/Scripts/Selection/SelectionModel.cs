@@ -1,41 +1,41 @@
-﻿using UnityEngine;
+﻿using Homework.Interfaces;
+using UnityEngine;
 
-namespace Homework
+namespace Homework.Models
 {
 	/// <summary>
-	/// Хранит в себе логику того, как стоит выделять объект
+	/// Этот скрипт должен висеть на объектах, с которыми можно взаимодействовать
 	/// </summary>
-	public sealed class SelectionModel : BaseSceneObject
+	public sealed class SelectionModel : BaseSceneObject, ISelectable
 	{
-		public float selectingDistance = 3f;    // Дистанция, на которой игрок будет "видеть" объект
+		[SerializeField]
+		[Tooltip("Можно ли толкать данный объект?")]
+		private bool canPush;
 		/// <summary>
-		/// Обнаруженный игроком объект
+		/// Можно ли толкать данный объект?
 		/// </summary>
-		public ISelectable SelectedObject
-		{
-			get {
-				if (selectedObj != null) return selectedObj;
-				else return null;
-			}
-		}
-
-		private ISelectable selectedObj;
-		private RaycastHit hit;
-
+		public bool CanPush { get { return canPush; } }
+		[SerializeField]
+		[Tooltip("Дистанция, на которой с этим объектом можно взаимодействовать")]
+		private float distance = 3f;
 		/// <summary>
-		/// Проверяет, есть ли впереди объект
+		/// Дистанция, на которой с этим объектом можно взаимодействовать
 		/// </summary>
-		public void Linecast() {
-			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-			if (Physics.Raycast(ray, out hit, selectingDistance))
-				selectedObj = hit.transform.GetComponent<ISelectable>();
-		}
+		public float Distance { get { return distance; } }
+		//[SerializeField]
+		//[Tooltip("Слои, которые могут взаимодействовать с этим объектом")]
+		//private LayerMask layerMask;
+		[SerializeField]
+		[Tooltip("Сила, с которой можно толкать данный объект")]
+		private float force = 10f;
 
 		/// <summary>
-		/// Взаимодействует с объектом
+		/// Позволяет толкать объект
 		/// </summary>
-		public void Interact() {
-			if (selectedObj != null) selectedObj.Interact();
+		public void Push(Vector3 direction) {
+			if (Rigidbody)
+				Rigidbody.AddForce(direction * force, ForceMode.Impulse);
+			else Debug.LogError("You should apply Rigidbody to the selected object");
 		}
 	}
 }

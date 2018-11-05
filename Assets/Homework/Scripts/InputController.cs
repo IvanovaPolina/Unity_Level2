@@ -11,7 +11,7 @@ namespace Homework
 			if (Input.GetButtonDown("SwitchFlashlight"))
 				Main.Instance.FlashlightController.Switch();
 			if (Input.GetKeyDown(KeyCode.E))
-				Main.Instance.SelectionController.Interact();
+				Main.Instance.SelectionController.Push();
 			//else if (Input.GetButtonDown("Inventory"))
 			//	Main.Instance.SelectionController.Switch();
 			if (Input.GetButtonDown("ChangeWeapon"))
